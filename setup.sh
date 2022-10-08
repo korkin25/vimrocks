@@ -10,6 +10,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp -r ${dist}/.vimrc ~/
 
 vim +PluginInstall +qall
-vim +BundleInstall
+vim +BundleInstall +qall
 
 
