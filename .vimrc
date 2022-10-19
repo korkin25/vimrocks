@@ -47,6 +47,13 @@ Bundle 'chrisbra/vim-sh-indent'
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType sh setlocal ts=3 sts=3 sw=3 expandtab
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
+set completeopt=preview,longest,menu
+set completefunc=pythoncomplete#Complete
+set completefunc=rubycomplete#Complete
+
 let g:indentLine_char = '⦙'
 
 nnoremap <Space> za
