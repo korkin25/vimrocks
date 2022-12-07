@@ -69,4 +69,4 @@ let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
 
 autocmd BufRead,BufNewFile *.sls set filetype=sls
-
+autocmd BufRead,BufNewFile *.jinja set filetype=jinja
