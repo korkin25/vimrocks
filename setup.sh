@@ -4,7 +4,7 @@ rm -rf ~/.vim ~/.vimrc
 
 dist=$(dirname $0)
 
-sudo apt install vim-nox git links2 yamllint
+sudo apt -y install vim-nox git links2 yamllint
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
