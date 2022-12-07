@@ -44,6 +44,7 @@ filetype plugin indent on    " required
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'pedrohdz/vim-yaml-folds'
 Bundle 'chrisbra/vim-sh-indent'
+Bundle "lepture/vim-jinja"
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType sh setlocal ts=3 sts=3 sw=3 expandtab
