@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh -x
 
 rm -rf ~/.vim ~/.vimrc
 
@@ -9,6 +9,8 @@ sudo apt -y install vim-nox git links2 yamllint
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 cp -r ${dist}/.vimrc ~/
+
+mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 vim +PluginInstall +qall
 vim +BundleInstall +qall

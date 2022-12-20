@@ -47,6 +47,7 @@ Bundle 'chrisbra/vim-sh-indent'
 Bundle "lepture/vim-jinja"
 Bundle 'saltstack/salt-vim'
 
+autocmd FileType sls setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType sh setlocal ts=3 sts=3 sw=3 expandtab
 autocmd FileType conf setlocal ts=3 sts=3 sw=3 expandtab
@@ -70,3 +71,11 @@ let g:ale_lint_on_text_changed = 'never'
 
 autocmd BufRead,BufNewFile *.sls set filetype=sls
 autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set sessionoptions-=options
+execute pathogen#infect('stuff/{}')
+execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+
