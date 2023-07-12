@@ -2,8 +2,6 @@
 
 rm -rf ~/.vim ~/.vimrc
 
-sudo apt update
-
 sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip
 sudo npm install -g htmlhint jsonlint
 
