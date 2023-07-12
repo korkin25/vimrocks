@@ -46,6 +46,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
+Plugin 'avakhov/vim-yaml'
 
 " Additional plugins or settings...
 
@@ -109,9 +110,21 @@ let g:indentLine_enabled = 1
 
 set tags=./tags,tags;$HOME
 set foldmethod=syntax  " or set foldmethod=indent
-VIMRC
 
-mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+" Enable ALE
+let g:ale_linters = {
+    \ 'yaml': ['yamlint']
+    \ }
+
+" Set ALE to show warnings
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_info = 'ℹ'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_info_str = 'I'
+
+VIMRC
 
 vim +PluginInstall +qall
 
