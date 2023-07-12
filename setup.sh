@@ -140,10 +140,18 @@ function! RecursiveDeleteTags(directory)
   let subdirs = glob(a:directory . '/*', 1, 1)
   for subdir in subdirs
     if isdirectory(subdir)
-      call RecursiveDeleteTags(subdir)
+      call DeleteTags(subdir)
     endif
   endfor
 endfunction
+
+function! DeleteTags(directory)
+  let tags_file = a:directory . '/tags'
+  if filereadable(tags_file)
+    call delete(tags_file)
+  endif
+endfunction
+
 
 VIMRC
 
