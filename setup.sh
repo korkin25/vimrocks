@@ -16,12 +16,12 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cat > "${HOME}/.vimrc" << VIMRC
 " Vim Options
 syntax on
-set number
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+set number!
 
 " Ignore case when searching
 set ignorecase
@@ -103,14 +103,11 @@ autocmd FileType sh setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " Indentation settings for YAML
 autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-
-" Additional settings...
 VIMRC
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 vim +PluginInstall +qall
-vim +BundleInstall +qall
 
 git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
 vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
@@ -126,4 +123,3 @@ extends: relaxed
 rules:
   line-length: disable
 END
-
