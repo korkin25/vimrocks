@@ -2,19 +2,111 @@
 
 rm -rf ~/.vim ~/.vimrc
 
-dist=$(dirname $0)
+sudo apt update
 
-sudo apt -y install vim-nox git links2 yamllint
+sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck
+sudo apt install npm
+sudo npm install -g htmlhint jsonlint
+sudo apt install python3-pip
+
 
 if [ -x "$(which salt-call)" ]; then
    sudo salt-call pip.install salt-lint 
+   SALT_LINT=/opt/saltstack/salt/pypath/bin/salt-lint
 else
    pip install salt-lint
+   SALT_LINT="${HOME}/.local/bin/salt-lint"
 fi
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-cp -r ${dist}/.vimrc ~/
+cat > "${HOME}/.vimrc" << VIMRC
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'dense-analysis/ale'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append \`!\` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append \`!\` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append \`!\` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+Bundle 'chase/vim-ansible-yaml'
+Bundle 'pedrohdz/vim-yaml-folds'
+Bundle 'chrisbra/vim-sh-indent'
+Bundle "lepture/vim-jinja"
+Bundle 'saltstack/salt-vim'
+
+autocmd FileType sls setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType jinja setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType sh setlocal ts=3 sts=3 sw=3 expandtab
+autocmd FileType conf setlocal ts=3 sts=3 sw=3 expandtab
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
+set completeopt=preview,longest,menu
+set completefunc=pythoncomplete#Complete
+set completefunc=rubycomplete#Complete
+
+let g:indentLine_char = '⦙'
+
+nnoremap <Space> za
+
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_linters = {'sls': ['saltlint']}
+let g:ale_linters = {'jinja': ['saltlint']}
+let g:ale_salt_sls_saltlint_executable = '${SALT_LINT}'
+
+autocmd BufRead,BufNewFile *.sls set filetype=yaml.jinja
+"autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set sessionoptions-=options
+execute pathogen#infect('stuff/{}')
+execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+VIMRC
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
@@ -25,7 +117,7 @@ git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/in
 vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
 
 echo Folding helm
-links2 -dump http://vimcasts.org/episodes/how-to-fold/ | egrep '(^[[:space:]]+z.+$|\:help)'
+links2 -dump http://vimcasts.org/episodes/how-to-fold/ | grep -E '(^[[:space:]]+z.+$|\:help)'
 
 #yamllint staff
 mkdir -p ~/.config/yamllint
