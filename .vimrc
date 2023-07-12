@@ -26,6 +26,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Plugin 'dense-analysis/ale'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,10 +70,13 @@ Plugin 'dense-analysis/ale'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_linters = {'sls': ['saltlint']}
+let g:ale_linters = {'jinja': ['saltlint']}
+let g:ale_salt_sls_saltlint_executable = '/opt/saltstack/salt/pypath/bin/salt-lint'
 
-autocmd BufRead,BufNewFile *.sls set filetype=sls
-autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+" autocmd BufRead,BufNewFile *.sls set filetype=sls
+" autocmd BufRead,BufNewFile *.jinja set filetype=jinja
 
 execute pathogen#infect()
 syntax on
