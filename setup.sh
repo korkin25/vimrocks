@@ -6,6 +6,10 @@ dist=$(dirname $0)
 
 sudo apt -y install vim-nox git links2 yamllint
 
+if [-x "$(which salt-call)" ]; then
+   sudo salt-call pip.install salt-list
+fi
+
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 cp -r ${dist}/.vimrc ~/
