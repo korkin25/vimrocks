@@ -74,7 +74,7 @@ let g:ale_linters = {'jinja': ['saltlint']}
 let g:ale_salt_sls_saltlint_executable = '/opt/saltstack/salt/pypath/bin/salt-lint'
 
 autocmd BufRead,BufNewFile *.sls set filetype=yaml.jinja
-autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+"autocmd BufRead,BufNewFile *.jinja set filetype=jinja
 
 execute pathogen#infect()
 syntax on
