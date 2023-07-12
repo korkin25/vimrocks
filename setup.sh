@@ -2,7 +2,7 @@
 
 rm -rf ~/.vim ~/.vimrc
 
-sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip ctags
+sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip universal-ctags
 sudo npm install -g htmlhint jsonlint
 
 if [ -x "$(which salt-call)" ]; then
