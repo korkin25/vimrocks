@@ -26,7 +26,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"Plugin 'dense-analysis/ale'
+Plugin 'dense-analysis/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,8 +46,8 @@ filetype plugin indent on    " required
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'pedrohdz/vim-yaml-folds'
 Bundle 'chrisbra/vim-sh-indent'
-"Bundle "lepture/vim-jinja"
-"Bundle 'saltstack/salt-vim'
+Bundle "lepture/vim-jinja"
+Bundle 'saltstack/salt-vim'
 
 autocmd FileType sls setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType jinja setlocal ts=2 sts=2 sw=2 expandtab
@@ -64,8 +64,6 @@ set completefunc=rubycomplete#Complete
 let g:indentLine_char = '⦙'
 
 nnoremap <Space> za
-
-Plugin 'dense-analysis/ale'
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
