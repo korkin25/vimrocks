@@ -7,100 +7,104 @@ sudo npm install -g htmlhint jsonlint
 
 if [ -x "$(which salt-call)" ]; then
    sudo salt-call pip.install salt-lint 
-   SALT_LINT=/opt/saltstack/salt/pypath/bin/salt-lint
 else
    pip install salt-lint
-   SALT_LINT="${HOME}/.local/bin/salt-lint"
 fi
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 cat > "${HOME}/.vimrc" << VIMRC
+" Vim Options
+syntax on
+set number
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Ignore case when searching
+set ignorecase
+set smartcase
 
-" set the runtime path to include Vundle and initialize
+" Highlight search results
+set incsearch
+set hlsearch
+
+" Vundle Plugin Manager Setup
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+" Specify the plugins you want to install or activate
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-surround'
 
-Plugin 'dense-analysis/ale'
+" Additional plugins or settings...
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append \`!\` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append \`!\` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append \`!\` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'pedrohdz/vim-yaml-folds'
-Bundle 'chrisbra/vim-sh-indent'
-Bundle "lepture/vim-jinja"
-Bundle 'saltstack/salt-vim'
-
-autocmd FileType sls setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType jinja setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType sh setlocal ts=3 sts=3 sw=3 expandtab
-autocmd FileType conf setlocal ts=3 sts=3 sw=3 expandtab
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType ruby set omnifunc=rubycomplete#Complete
-set completeopt=preview,longest,menu
-set completefunc=pythoncomplete#Complete
-set completefunc=rubycomplete#Complete
-
-let g:indentLine_char = '⦙'
-
-nnoremap <Space> za
-
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_linters = {'sls': ['saltlint']}
-let g:ale_linters = {'jinja': ['saltlint']}
-let g:ale_salt_sls_saltlint_executable = '${SALT_LINT}'
-
-autocmd BufRead,BufNewFile *.sls set filetype=yaml.jinja
-"autocmd BufRead,BufNewFile *.jinja set filetype=jinja
-
-execute pathogen#infect()
-syntax on
+call vundle#end()
 filetype plugin indent on
-set sessionoptions-=options
-execute pathogen#infect('stuff/{}')
-execute pathogen#infect('bundle/{}', '~/.vim/bundle/{}')
+
+" Plugin Settings
+
+" Commentary Plugin
+nmap gcc <Plug>CommentaryLine
+vmap gc <Plug>Commentary
+
+" Fugitive Plugin
+map <leader>gs :Git<CR>
+
+" NERDTree Plugin
+map <F3> :NERDTreeToggle<CR>
+
+" vim-airline Plugin
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+
+" vim-surround Plugin
+map cs <Plug>YSurround
+map ds <Plug>YSurround
+
+" Additional settings...
+
+" Path to salt-lint
+if filereadable('/opt/saltstack/salt/pypath/bin/salt-lint')
+    let g:ale_salt_sls_saltlint_executable = '/opt/saltstack/salt/pypath/bin/salt-lint'
+else
+    let g:ale_salt_sls_saltlint_executable = 'salt-lint'
+endif
+
+" Indentation settings for Python
+autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+" Indentation settings for Ansible
+autocmd FileType yaml,ansible setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Indentation settings for SaltStack (SLS)
+autocmd FileType sls setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Indentation settings for Jinja
+autocmd FileType jinja setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Indentation settings for HTML
+autocmd FileType html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Indentation settings for Bash
+autocmd FileType sh setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Indentation settings for YAML
+autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" Additional settings...
 VIMRC
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
