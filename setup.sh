@@ -7,10 +7,9 @@ dist=$(dirname $0)
 sudo apt -y install vim-nox git links2 yamllint
 
 if [ -x "$(which salt-call)" ]; then
-   sudo salt-call pip.install salt-lint yamllint
+   sudo salt-call pip.install salt-lint 
 else
    pip install salt-lint
-   sudo apt -y install yamllint
 fi
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
