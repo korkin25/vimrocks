@@ -2,7 +2,7 @@
 
 rm -rf ~/.vim ~/.vimrc
 
-sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip
+sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip ctags
 sudo npm install -g htmlhint jsonlint
 
 if [ -x "$(which salt-call)" ]; then
@@ -45,6 +45,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
+Plugin 'Yggdroot/indentLine'
 
 " Additional plugins or settings...
 
@@ -103,6 +104,11 @@ autocmd FileType sh setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " Indentation settings for YAML
 autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+let g:indentLine_enabled = 1
+
+set tags=./tags,tags;$HOME
+set foldmethod=syntax  " or set foldmethod=indent
 VIMRC
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
