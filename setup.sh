@@ -4,11 +4,8 @@ rm -rf ~/.vim ~/.vimrc
 
 sudo apt update
 
-sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck
-sudo apt install npm
+sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip
 sudo npm install -g htmlhint jsonlint
-sudo apt install python3-pip
-
 
 if [ -x "$(which salt-call)" ]; then
    sudo salt-call pip.install salt-lint 
