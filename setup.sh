@@ -163,13 +163,11 @@ nnoremap <F3> :Explore<CR>
 nnoremap <F7> :ALENext<CR>
 nnoremap <F6> :ALEPrevious<CR>
 
-" new window
-nnoremap <C-N> :new<CR>
-" Open file in new window
-nnoremap <C-O> :browse split<CR>
+nnoremap <C-N> :vnew<CR>
+nnoremap <C-O> :new<CR>
 
-syntax on
 filetype plugin indent on
+
 VIMRC
 
 vim +PluginInstall +qall
