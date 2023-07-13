@@ -202,19 +202,15 @@ ignored:
   - 204
 END
 
-mkdir ~/bin >/dev/null 2>&1
+mkdir "${HOME}/bin" >/dev/null 2>&1
 cat << SALTCONFIG > ~/bin/salt-lint
 #!/bin/bash
 
 one_dir_salt_salt_lint=/opt/saltstack/salt/pypath/bin/salt-lint
 
-if [ -x "\${one_dir_salt_salt_lint}" ]; then
-    salt="\${one_dir_salt_salt_lint}"
+if [ -x "/opt/saltstack/salt/pypath/bin/salt-lint" ]; then
+    /opt/saltstack/salt/pypath/bin/salt-lint -c ~/.config/salt-lint/.salt-lint \$*
 else
-    salt=salt-lint
+    salt-lint -c ~/.config/salt-lint/.salt-lint \$*
 fi
-
-"\${salt}" -c ~/.config/salt-lint/.salt-lint \$*
-
 SALTCONFIG
-chmod +x ~/bin/salt-lint
