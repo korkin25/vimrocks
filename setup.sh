@@ -29,6 +29,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+set nonumber
 
 " Ignore case when searching
 set ignorecase
@@ -55,6 +56,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
 Plugin 'avakhov/vim-yaml'
 Plugin 'egonschiele/salt-vim'
+Plugin 'wincent/command-t'
+Bundle 'chase/vim-ansible-yaml'
+Bundle 'pedrohdz/vim-yaml-folds'
 
 " Additional plugins or settings...
 
@@ -131,8 +135,14 @@ let g:ale_sign_info = 'ℹ'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
+let g:indentLine_char = '⦙'
 
-set nonumber
+autocmd BufRead,BufNewFile *.sls set filetype=sls
+autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+
+syntax on
+filetype plugin indent on
+
 VIMRC
 
 vim +PluginInstall +qall
