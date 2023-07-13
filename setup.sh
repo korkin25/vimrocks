@@ -195,7 +195,7 @@ ignored:
   - 204
 END
 
-mkdir ~/bin
+mkdir ~/bin >/dev/null 2>&1
 cat << SALTCONFIG > ~/bin/salt-lint
 #!/bin/bash
 
