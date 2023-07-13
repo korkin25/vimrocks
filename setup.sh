@@ -74,6 +74,7 @@ nmap gcc <Plug>CommentaryLine
 vmap gc <Plug>Commentary
 
 " Fugitive Plugin
+let mapleader = "\\"
 map <leader>gs :Git<CR>
 
 " NERDTree Plugin
@@ -168,8 +169,6 @@ filetype plugin indent on
 
 " Path to salt-lint
 let g:ale_salt_sls_saltlint_executable = expand('$HOME') . '/bin/salt-lint'
-
-let mapleader = "\\"
 
 VIMRC
 
