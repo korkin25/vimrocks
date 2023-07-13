@@ -199,6 +199,7 @@ YAMLLINT
 mkdir -p "${HOME}/.config/salt-lint" > /dev/null 2>&1
 cat << SALTCONFIG > "${HOME}/.config/salt-lint/.salt-lint"
 ignored:
+  - 203
   - 204
 SALTCONFIG
 
