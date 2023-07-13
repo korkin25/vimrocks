@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 rm -rf ~/.vim/bundle/Vundle.vim ~/.vim/pack/vendor/start/indentLine ~/.vimrc
 
@@ -187,23 +187,23 @@ echo Folding helm
 links2 -dump http://vimcasts.org/episodes/how-to-fold/ | grep -E '(^[[:space:]]+z.+$|\:help)'
 
 #yamllint staff
-mkdir -p ~/.config/yamllint
-cat << END > ~/.config/yamllint/config
+mkdir -p "${HOME}/.config/yamllint"
+cat << YAMLLINT > "${HOME}/.config/yamllint/config"
 extends: relaxed
 
 rules:
   line-length: disable
-END
+YAMLLINT
 
 #salt-lint staff
 mkdir -p "${HOME}/.config/salt-lint" > /dev/null 2>&1
-cat << END > "${HOME}/.config/salt-lint/.salt-lint"
+cat << SALTCONFIG > "${HOME}/.config/salt-lint/.salt-lint"
 ignored:
   - 204
-END
+SALTCONFIG
 
 mkdir "${HOME}/bin" >/dev/null 2>&1
-cat << SALTCONFIG > "${HOME}/bin/salt-lint"
+cat << SALTSCRIPT > "${HOME}/bin/salt-lint"
 #!/bin/bash
 
 one_dir_salt_salt_lint=/opt/saltstack/salt/pypath/bin/salt-lint
@@ -213,5 +213,6 @@ if [ -x "/opt/saltstack/salt/pypath/bin/salt-lint" ]; then
 else
     salt-lint -c ~/.config/salt-lint/.salt-lint \$*
 fi
-SALTCONFIG
-chmod +x 
+SALTSCRIPT
+chmod +x "${HOME}/bin/salt-lint"
+
