@@ -9,7 +9,7 @@ npm_packages=("htmlhint" "jsonlint")
 for package in "${npm_packages[@]}"; do
     if ! command -v "$package" &> /dev/null; then
         echo "$package is not installed. Running npm install $package..."
-        npm install "$package"
+        sudo npm install -g "$package"
     fi
 done
 
@@ -18,8 +18,6 @@ if [ -x "$(which salt-call)" ]; then
 else
    pip install salt-lint
 fi
-
-exit
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
