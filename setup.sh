@@ -129,15 +129,17 @@ set foldmethod=syntax  " or set foldmethod=indent
 let g:ale_linters = {
     \ 'yaml': ['yamllint', 'ansible-lint'],
     \ 'ansible': ['ansible-lint'],
-    \ 'sls': ['salt-lint'],
     \ 'salt': ['salt-lint'],
-    \ 'jinja.yaml': ['salt-lint'],
     \ 'jinja': ['salt-lint'],
     \ 'sh': ['shellcheck'],
     \ 'html': ['htmlhint'],
     \ 'json': ['jsonlint'],
     \ 'python': ['flake8']
     \ }
+
+let g:ale_linter_aliases = {
+      \ 'sls': 'salt'
+      \}
 
 " Set ALE to show warnings
 let g:ale_sign_error = '✗'
@@ -149,8 +151,8 @@ let g:ale_echo_msg_info_str = 'I'
 let g:indentLine_char = '⦙'
 
 augroup salt_syn
-  au BufNewFile,BufRead *.sls set filetype=jinja.yaml
-  au BufNewFile,BufRead *.jinja set filetype=jinja.json
+  au BufNewFile,BufRead *.sls set filetype=salt.yaml
+  au BufNewFile,BufRead *.jinja set filetype=salt.json
 augroup END
 
 " lint staff
