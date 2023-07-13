@@ -169,7 +169,7 @@ filetype plugin indent on
 " Path to salt-lint
 let g:ale_salt_sls_saltlint_executable = expand('$HOME') . '/bin/salt-lint'
 
-let mapleader = "\"
+let mapleader = "\\"
 
 VIMRC
 
