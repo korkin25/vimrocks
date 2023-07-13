@@ -92,13 +92,6 @@ map ds <Plug>YSurround
 
 " Additional settings...
 
-" Path to salt-lint
-if filereadable('/opt/saltstack/salt/pypath/bin/salt-lint')
-    let g:ale_salt_sls_saltlint_executable = '/opt/saltstack/salt/pypath/bin/salt-lint'
-else
-    let g:ale_salt_sls_saltlint_executable = 'salt-lint'
-endif
-
 " Indentation settings for Python
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
@@ -150,6 +143,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
 let g:indentLine_char = '⦙'
 
+" salt staff
 augroup salt_syn
   au BufNewFile,BufRead *.sls set filetype=salt.yaml
   au BufNewFile,BufRead *.jinja set filetype=salt.json
@@ -157,6 +151,7 @@ augroup END
 
 " lint staff
 let g:ale_lint_on_text_changed = 'always' 
+
 " lint errors navigation
 
 " key bindings
@@ -169,6 +164,9 @@ nnoremap <C-N> :vnew<CR>
 nnoremap <C-O> :new<CR>
 
 filetype plugin indent on
+
+" Path to salt-lint
+let g:ale_salt_sls_saltlint_executable = expand('$HOME') . '/bin/salt-lint'
 
 VIMRC
 
@@ -188,3 +186,27 @@ extends: relaxed
 rules:
   line-length: disable
 END
+
+#salt-lint staff
+mkdir -p ~/.config/salt-lint
+cat << END > ~/.config/salt-lint/.salt-lint
+ignored:
+  - 204
+END
+
+mkdir ~/bin
+cat << SALTCONFIG > ~/bin/salt-lint
+#!/bin/bash
+
+one_dir_salt_salt_lint=/opt/saltstack/salt/pypath/bin/salt-lint
+
+if [ -x "${one_dir_salt_salt_lint}" ]; then
+    salt="${one_dir_salt_salt_lint}"
+else
+    salt=salt-lint
+fi
+
+"${salt}" -c ~/.config/salt-lint/.salt-lint
+
+SALTCONFIG
+chmod +x ~/bin/salt-lint
