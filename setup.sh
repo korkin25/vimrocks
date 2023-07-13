@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-rm -rf ~/.vim/bundle/Vundle.vim ~/.vimrc
+rm -rf ~/.vim/bundle/Vundle.vim ~/.vim/pack/vendor/start/indentLine ~/.vimrc
 
 sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip universal-ctags
 
