@@ -150,6 +150,12 @@ augroup salt_syn
   au BufNewFile,BufRead *.jinja set filetype=salt.json
 augroup END
 
+" .vimrc auto-reload staff
+augroup myvimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
 " lint staff
 let g:ale_lint_on_text_changed = 'always' 
 
@@ -158,10 +164,12 @@ let g:ale_lint_on_text_changed = 'always'
 " key bindings
 nnoremap <F2>  :w<CR>
 nnoremap <F3>  :Explore<CR>
-nnoremap <F5>  "+y                   " "F5 copy vim clipboard to KDE keyboard
+
+" F5 copy vim clipboard to KDE keyboard
+nnoremap <F5>  "+y
 nnoremap <F6>  :ALEPrevious<CR>
 nnoremap <F7>  :ALENext<CR>
-nnoremap <F10> :silent! tabonly | silent! bufdo! bdelete<CR>      " close unmodified windows
+nnoremap <F10> :bufdo if !&modified \| bd \| endif<CR>
 nnoremap <C-N> :vnew<CR>            
 nnoremap <C-O> :new<CR>
 
@@ -202,13 +210,13 @@ cat << SALTCONFIG > ~/bin/salt-lint
 
 one_dir_salt_salt_lint=/opt/saltstack/salt/pypath/bin/salt-lint
 
-if [ -x "${one_dir_salt_salt_lint}" ]; then
-    salt="${one_dir_salt_salt_lint}"
+if [ -x "\${one_dir_salt_salt_lint}" ]; then
+    salt="\${one_dir_salt_salt_lint}"
 else
     salt=salt-lint
 fi
 
-"${salt}" -c ~/.config/salt-lint/.salt-lint
+"\${salt}" -c ~/.config/salt-lint/.salt-lint \$*
 
 SALTCONFIG
 chmod +x ~/bin/salt-lint
