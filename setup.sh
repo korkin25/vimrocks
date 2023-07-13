@@ -156,14 +156,14 @@ let g:ale_lint_on_text_changed = 'always'
 " lint errors navigation
 
 " key bindings
-nnoremap <F2> :w<CR>
-nnoremap <F3> :Explore<CR>
-nnoremap <F4> "+y                   " "F4 copy vim clipboard to KDE keyboard
-nnoremap <F6> :ALEPrevious<CR>
-nnoremap <F7> :ALENext<CR>
+nnoremap <F2>  :w<CR>
+nnoremap <F3>  :Explore<CR>
+nnoremap <F5>  "+y                   " "F5 copy vim clipboard to KDE keyboard
+nnoremap <F6>  :ALEPrevious<CR>
+nnoremap <F7>  :ALENext<CR>
+nnoremap <F10> :silent! tabonly | silent! bufdo! bdelete<CR>      " close unmodified windows
 nnoremap <C-N> :vnew<CR>            
 nnoremap <C-O> :new<CR>
-"F4 copy vim clipboard to KDE keyboard
 
 filetype plugin indent on
 
