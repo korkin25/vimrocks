@@ -137,8 +137,10 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
 let g:indentLine_char = '⦙'
 
-autocmd BufRead,BufNewFile *.sls set filetype=sls
-autocmd BufRead,BufNewFile *.jinja set filetype=jinja
+augroup salt_syn
+  au BufNewFile,BufRead *.sls set filetype=sls.yaml
+  au BufNewFile,BufRead *.jinja set filetype=sls.json
+augroup END
 
 syntax on
 filetype plugin indent on
