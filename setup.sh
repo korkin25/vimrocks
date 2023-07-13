@@ -178,7 +178,7 @@ let g:ale_salt_sls_saltlint_executable = expand('$HOME') . '/bin/salt-lint'
 
 VIMRC
 
-bash -c "vim +PluginInstall +qall"
+vim +PluginInstall +qall
 
 git clone https://github.com/Yggdroot/indentLine.git ~/.vim/pack/vendor/start/indentLine
 vim -u NONE -c "helptags  ~/.vim/pack/vendor/start/indentLine/doc" -c "q"
