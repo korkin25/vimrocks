@@ -129,6 +129,8 @@ let g:ale_linters = {
     \ 'yaml': ['yamllint', 'ansible-lint'],
     \ 'ansible': ['ansible-lint'],
     \ 'sls': ['salt-lint'],
+    \ 'salt': ['salt-lint'],
+    \ 'jinja.yaml': ['salt-lint'],
     \ 'jinja': ['salt-lint'],
     \ 'sh': ['shellcheck'],
     \ 'html': ['htmlhint'],
@@ -146,7 +148,7 @@ let g:ale_echo_msg_info_str = 'I'
 let g:indentLine_char = '⦙'
 
 augroup salt_syn
-  au BufNewFile,BufRead *.sls set filetype=yaml.sls
+  au BufNewFile,BufRead *.sls set filetype=jinja.yaml
   au BufNewFile,BufRead *.jinja set filetype=jinja.json
 augroup END
 
