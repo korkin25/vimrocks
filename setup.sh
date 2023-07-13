@@ -158,12 +158,12 @@ let g:ale_lint_on_text_changed = 'always'
 " key bindings
 nnoremap <F2> :w<CR>
 nnoremap <F3> :Explore<CR>
-nnoremap <F7> :ALENext<CR>
+nnoremap <F4> "+y                   " "F4 copy vim clipboard to KDE keyboard
 nnoremap <F6> :ALEPrevious<CR>
-nnoremap <C-N> :vnew<CR>
+nnoremap <F7> :ALENext<CR>
+nnoremap <C-N> :vnew<CR>            
 nnoremap <C-O> :new<CR>
 "F4 copy vim clipboard to KDE keyboard
-nnoremap <F4> "+y
 
 filetype plugin indent on
 
