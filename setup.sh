@@ -1,24 +1,25 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
 rm -rf ~/.vim ~/.vimrc
 
 sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip universal-ctags
 
-if ! command -v htmlhint &> /dev/null; then
-    echo "htmlhint is not installed. Running npm install htmlhint..."
-    npm install htmlhint
-fi
+npm_packages=("htmlhint" "jsonlint")
 
-if ! command -v jsonlint &> /dev/null; then
-    echo "jsonlint is not installed. Running npm install jsonlint..."
-    npm install jsonlint
-fi
+for package in "${npm_packages[@]}"; do
+    if ! command -v "$package" &> /dev/null; then
+        echo "$package is not installed. Running npm install $package..."
+        npm install "$package"
+    fi
+done
 
 if [ -x "$(which salt-call)" ]; then
    sudo salt-call pip.install salt-lint 
 else
    pip install salt-lint
 fi
+
+exit
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
