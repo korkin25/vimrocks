@@ -132,35 +132,6 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
 
-" tags autocreate
-autocmd BufEnter * execute "silent! !ctags -R " . shellescape(expand('%:p:h'))
-
-" remove tags recursive. !!! Can be dangerous!
-
-autocmd BufDelete * call RecursiveDeleteTags(expand('%:p:h'))
-
-function! RecursiveDeleteTags(directory)
-  let tags_file = a:directory . '/tags'
-  if filereadable(tags_file)
-    call delete(tags_file)
-  endif
-
-  let subdirs = glob(a:directory . '/*', 1, 1)
-  for subdir in subdirs
-    if isdirectory(subdir)
-      call DeleteTags(subdir)
-    endif
-  endfor
-endfunction
-
-function! DeleteTags(directory)
-  let tags_file = a:directory . '/tags'
-  if filereadable(tags_file)
-    call delete(tags_file)
-  endif
-endfunction
-
-
 VIMRC
 
 vim +PluginInstall +qall
