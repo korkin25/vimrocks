@@ -59,6 +59,7 @@ Plugin 'egonschiele/salt-vim'
 Plugin 'wincent/command-t'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'pedrohdz/vim-yaml-folds'
+Plugin 'dense-analysis/ale'
 
 " Additional plugins or settings...
 
@@ -120,12 +121,19 @@ autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 let g:indentLine_enabled = 1
 
-set tags=./tags,tags;$HOME
+set tags=./tags,tags;/home/kk573
 set foldmethod=syntax  " or set foldmethod=indent
 
 " Enable ALE
 let g:ale_linters = {
-    \ 'yaml': ['yamlint']
+    \ 'yaml': ['yamllint', 'ansible-lint'],
+    \ 'ansible': ['ansible-lint'],
+    \ 'sls': ['salt-lint'],
+    \ 'jinja': ['salt-lint'],
+    \ 'sh': ['shellcheck'],
+    \ 'html': ['htmlhint'],
+    \ 'json': ['jsonlint'],
+    \ 'python': ['flake8']
     \ }
 
 " Set ALE to show warnings
@@ -138,13 +146,15 @@ let g:ale_echo_msg_info_str = 'I'
 let g:indentLine_char = '⦙'
 
 augroup salt_syn
-  au BufNewFile,BufRead *.sls set filetype=sls.yaml
-  au BufNewFile,BufRead *.jinja set filetype=sls.json
+  au BufNewFile,BufRead *.sls set filetype=yaml.sls
+  au BufNewFile,BufRead *.jinja set filetype=jinja.json
 augroup END
+
+" lint staff
+let g:ale_lint_on_text_changed = 'always' 
 
 syntax on
 filetype plugin indent on
-
 VIMRC
 
 vim +PluginInstall +qall
