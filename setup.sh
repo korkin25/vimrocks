@@ -29,7 +29,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
-set number!
 
 " Ignore case when searching
 set ignorecase
@@ -55,6 +54,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
 Plugin 'Yggdroot/indentLine'
 Plugin 'avakhov/vim-yaml'
+Plugin 'egonschiele/salt-vim'
 
 " Additional plugins or settings...
 
@@ -132,6 +132,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
 
+set nonumber
 VIMRC
 
 vim +PluginInstall +qall
