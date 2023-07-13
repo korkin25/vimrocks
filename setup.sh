@@ -30,6 +30,7 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set nonumber
+set mouse=a
 
 " Ignore case when searching
 set ignorecase
