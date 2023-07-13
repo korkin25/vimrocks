@@ -74,7 +74,7 @@ nmap gcc <Plug>CommentaryLine
 vmap gc <Plug>Commentary
 
 " Fugitive Plugin
-let mapleader = "\\"
+let mapleader = '\\'
 map <leader>gs :Git<CR>
 
 " NERDTree Plugin
