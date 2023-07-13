@@ -164,12 +164,10 @@ let g:ale_lint_on_text_changed = 'always'
 " key bindings
 nnoremap <F2>  :w<CR>
 nnoremap <F3>  :Explore<CR>
-
 " F5 copy vim clipboard to KDE keyboard
 nnoremap <F5>  "+y
 nnoremap <F6>  :ALEPrevious<CR>
 nnoremap <F7>  :ALENext<CR>
-nnoremap <F10> :bufdo if !&modified \| bd \| endif<CR>
 nnoremap <C-N> :vnew<CR>            
 nnoremap <C-O> :new<CR>
 
