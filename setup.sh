@@ -196,14 +196,14 @@ rules:
 END
 
 #salt-lint staff
-mkdir -p ~/.config/salt-lint
-cat << END > ~/.config/salt-lint/.salt-lint
+mkdir -p "${HOME}/.config/salt-lint" > /dev/null 2>&1
+cat << END > "${HOME}/.config/salt-lint/.salt-lint"
 ignored:
   - 204
 END
 
 mkdir "${HOME}/bin" >/dev/null 2>&1
-cat << SALTCONFIG > ~/bin/salt-lint
+cat << SALTCONFIG > "${HOME}/bin/salt-lint"
 #!/bin/bash
 
 one_dir_salt_salt_lint=/opt/saltstack/salt/pypath/bin/salt-lint
@@ -214,3 +214,4 @@ else
     salt-lint -c ~/.config/salt-lint/.salt-lint \$*
 fi
 SALTCONFIG
+chmod +x 
