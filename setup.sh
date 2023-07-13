@@ -156,6 +156,10 @@ augroup END
 " lint staff
 let g:ale_lint_on_text_changed = 'always' 
 " lint errors navigation
+
+" key bindings
+nnoremap <F2> :w<CR>
+nnoremap <F3> :Explore<CR>
 nnoremap <F7> :ALENext<CR>
 nnoremap <F6> :ALEPrevious<CR>
 
