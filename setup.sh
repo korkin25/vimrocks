@@ -3,7 +3,16 @@
 rm -rf ~/.vim ~/.vimrc
 
 sudo apt -y install vim-nox git links2 flake8 ansible-lint yamllint shellcheck npm python3-pip universal-ctags
-sudo npm install -g htmlhint jsonlint
+
+if ! command -v htmlhint &> /dev/null; then
+    echo "htmlhint is not installed. Running npm install htmlhint..."
+    npm install htmlhint
+fi
+
+if ! command -v jsonlint &> /dev/null; then
+    echo "jsonlint is not installed. Running npm install jsonlint..."
+    npm install jsonlint
+fi
 
 if [ -x "$(which salt-call)" ]; then
    sudo salt-call pip.install salt-lint 
