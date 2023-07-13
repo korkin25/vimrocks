@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "htmlhint": "^1.1.4",
-    "jsonlint": "^1.6.3"
-  }
-}
