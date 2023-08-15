@@ -62,7 +62,7 @@ Bundle 'chase/vim-ansible-yaml'
 Bundle 'pedrohdz/vim-yaml-folds'
 Plugin 'dense-analysis/ale'
 Plugin 'github/copilot.vim'
-Plugin 'yasuhiroki/github-actions-yaml.vim'
+Plugin 'rhysd/vim-github-support'
 
 " Additional plugins or settings...
 
