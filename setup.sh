@@ -63,6 +63,7 @@ Bundle 'pedrohdz/vim-yaml-folds'
 Plugin 'dense-analysis/ale'
 Plugin 'github/copilot.vim'
 Plugin 'rhysd/vim-github-support'
+Plugin 'hankei6km/ale-linter-actionlint.vim'
 
 " Additional plugins or settings...
 
