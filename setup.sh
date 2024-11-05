@@ -64,6 +64,7 @@ Plugin 'dense-analysis/ale'
 Plugin 'github/copilot.vim'
 Plugin 'rhysd/vim-github-support'
 Plugin 'hankei6km/ale-linter-actionlint.vim'
+Plugin 'hashivim/vim-terraform'
 
 " Additional plugins or settings...
 
